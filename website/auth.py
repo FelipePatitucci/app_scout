@@ -49,7 +49,7 @@ def score():
         adv = request.form.get('adversario')
         jogo_result = request.form.get('jogo_result')
         data_jogo = request.form.get('data_jogo')
-        flash(f'Registro Adicionado com Sucesso!{pontos}{saque_correto}{atk_correto}?{jogo_tipo}{adv}{jogo_result}{atleta}{data_jogo}', category='sucess_creation')
+        flash(f'Registro Adicionado com Sucesso!', category='sucess_creation')
         return redirect(url_for('views.home'))
 
     return render_template('score.html', user=current_user)
