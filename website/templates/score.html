@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+{% extends 'base.html'%} {% block title %}Score{% endblock %} {% block content%}
+<form method="POST">
+  <div class="container center-text">
+    <!-- Linha 0 -->
+    <div class="row">
+      <div
+        class="col"
+        style="
+          top: 2px;
+          width: 100%;
+          font-size: 35px;
+          text-align: center;
+          margin-top: 20px;
+        "
+      >
+        Dados do Jogo
+        <div class="input-group mb-4" style="margin-top: 20px">
+          <span class="input-group-text" id="basic-addon1">#</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nome da Atleta"
+            name="atleta"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 1 -->
+    <div class="row">
+      <!-- Saques Totais -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Saque Total
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbA"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="A"
+            name="saques_totais"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbA"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- Saques Corretos -->
+
+      <div class="col" style="top: 2px; font-size: 25px; text-align: left">
+        Saque Correto
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbB"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; align-self: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="B"
+            name="saques_corretos"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+              text-align: center;
+              align-self: center;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbB"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="
+              float: left;
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              align-self: center;
+            "
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Ataques Corretos
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbC"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; text-align: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="C"
+            name="ataques_corretos"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbC"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 2 -->
+    <div class="row">
+      <!-- Recepcoes Totais -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Recepções Totais
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbD"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="D"
+            name="recepcoes_totais"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbD"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- Saques Corretos -->
+
+      <div class="col" style="top: 2px; font-size: 25px; text-align: left">
+        Saques Corretos
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbE"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; align-self: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="E"
+            name="recepcoes_corretas"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+              text-align: center;
+              align-self: center;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbE"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="
+              float: left;
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              align-self: center;
+            "
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- Bolas Recebidas -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Bolas Recebidas
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbF"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; text-align: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="F"
+            name="bolas_recebidas"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbF"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 3 -->
+    <div class="row">
+      <!-- Pontos Feitos -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Recepções Totais
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbG"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="G"
+            name="pontos_feitos"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbG"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- Pontos Disputados -->
+
+      <div class="col" style="top: 2px; font-size: 25px; text-align: left">
+        Pontos Disputados
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbH"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; align-self: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="H"
+            name="pontos_disputados"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+              text-align: center;
+              align-self: center;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbH"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="
+              float: left;
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              align-self: center;
+            "
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <!-- Pontos Totais -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Pontos Totais
+        <div class="form-group" style="display: inline-block; width: 100%">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="mbI"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px; text-align: center"
+          >
+            -
+          </button>
+          <input
+            type="number"
+            id="I"
+            name="pontos_totais"
+            onchange="imposeMinMax(this)"
+            value="0"
+            max="1000"
+            min="0"
+            step="1"
+            style="
+              float: left;
+              width: 60px;
+              height: 40px;
+              margin-bottom: 40px;
+              font-size: 20px;
+            "
+          />
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            id="pbI"
+            onpointerdown="modIn(this)"
+            onpointerup="clearAll()"
+            onpointerleave="clearAll()"
+            style="float: left; width: 40px; height: 40px"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 4 -->
+    <div class="row">
+      <!-- Tipo de Jogo -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Tipo de Jogo
+        <div class="w-50 form-group">
+          <select class="selectpicker form-control" name="jogo_tipo">
+            <option value="" disabled selected hidden>Selecione o tipo</option>
+            <option>Amistoso</option>
+            <option>Jogo Oficial</option>
+          </select>
+        </div>
+      </div>
+      <!-- Resultado Jogo -->
+
+      <div class="col" style="top: 2px; font-size: 25px; text-align: left">
+        Resultado Jogo
+        <div class="w-75 form-group">
+          <select class="selectpicker form-control" name="jogo_result">
+            <option value="" disabled selected hidden>
+              Selecione o Resultado
+            </option>
+            <option>Vitória</option>
+            <option>Derrota</option>
+          </select>
+        </div>
+      </div>
+      <!-- Adversário -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Adversário
+        <div class="w-75 form-group">
+          <select class="selectpicker form-control" name="adversario">
+            <option value="" disabled selected hidden>
+              Selecione o Adversário
+            </option>
+            <option>Flamengo</option>
+            <option>Fluminense</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 5 -->
+    <div class="row">
+      <!-- Placar -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Placar
+        <div class="w-75 form-group">
+          <select class="selectpicker form-control" name="placar">
+            <option value="" disabled selected hidden>
+              Selecione o Placar
+            </option>
+            <option>3 x 0</option>
+            <option>3 x 1</option>
+            <option>3 x 2</option>
+          </select>
+        </div>
+      </div>
+      <!-- Data -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Data
+        <div class="input-group mb-4">
+          <input
+            type="date"
+            name="data_jogo"
+            style="font-size: 10"
+            placeholder="DD-MM-AAAA"
+          />
+        </div>
+      </div>
+      <!-- Data Teste -->
+      <div
+        class="col"
+        style="top: 2px; width: 100%; font-size: 25px; text-align: left"
+      >
+        Data Teste
+        <div class="form-group">
+          <div class="input-group date" id="datetimepicker1">
+            <input type="text" class="form-control" />
+            <span class="input-group-addon"
+              ><span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Submit Button -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <button type="submit" class="btn btn-primary">Save Results</button>
+  </div>
+</form>
+{% endblock %}
