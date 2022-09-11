@@ -1,6 +1,4 @@
 from dataclasses import dataclass
-from datetime import datetime
-from sqlalchemy import PrimaryKeyConstraint
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
